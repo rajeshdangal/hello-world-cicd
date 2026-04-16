@@ -42,16 +42,7 @@ jobs:
       - name: Build
         run: npm run build
 
-  # Job 3: Deploy to Render
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Trigger Render deployment
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+  
 
   # Job 4: Tag Release
   tag_release:
